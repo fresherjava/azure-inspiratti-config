@@ -12,30 +12,30 @@ zuul:
       path: /auth/**
       sensitiveHeaders:
       url: http://localhost:8000
-    member-service:
-      path: /member-service/**
-      sensitiveHeaders:
-      url: http://localhost:9001
+    #member-service:
+      #path: /member-service/**
+      #sensitiveHeaders:
+      #url: http://localhost:9001
     user-service:
       path: /userdetails-service/**
       sensitiveHeaders:
       url: http://localhost:9003
-    report-abuse-service:
-      path: /report-abuse-service/**
-      sensitiveHeaders:
-      url: http://localhost:9004
-    media-service:
-      path: /media-service/**
-      sensitiveHeaders:
-      url: http://localhost:9005
-    blog-post-services:
-      path: /blog-post-services/**
-      sensitiveHeaders:
-      url: http://localhost:9006
-    dictionary-service:
-      path: /dictionary-service/**
-      sensitiveHeaders:
-      url: http://localhost:9007
+    #report-abuse-service:
+      #path: /report-abuse-service/**
+      #sensitiveHeaders:
+      #url: http://localhost:9004
+    #media-service:
+      #path: /media-service/**
+      #sensitiveHeaders:
+      #url: http://localhost:9005
+    #blog-post-services:
+      #path: /blog-post-services/**
+      #sensitiveHeaders:
+      #url: http://localhost:9006
+    #dictionary-service:
+      #path: /dictionary-service/**
+      #sensitiveHeaders:
+      #url: http://localhost:9007
   host:
     connect-timeout-millis: 160000000
     socket-timeout-millis: 160000000
