@@ -1,0 +1,101 @@
+
+server:
+  port: ${PORT:9005}
+    
+spring:
+  jpa:
+    generate-ddl: true
+    database: mysql
+    show-sql: true
+    hibernate:
+     ddl-auto: update 
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://104.211.112.21:3306/inspiratti?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    username: appuser
+    password: P@ssw0rd@123
+  application:
+    name: media-service
+
+  cloud:
+    azure:
+      credential-file-path: my.azureauth  
+      resource-group: Prod_Inspirati
+      region: Central India
+      storage:
+        account: inspiratiblob
+  
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+ribbon:
+  eureka:
+    enabled: true
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 2
+  OkToRetryOnAllOperations: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+media-service:
+  ribbon:
+    listOfServers: http://localhost:9005
+
+member-service:
+  ribbon:
+    listOfServers: http://localhost:9001
+
+userdetails-service:
+  ribbon:
+    listOfServers: http://localhost:9003 
+
+
+  #contextPath: /resource
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:8000/user
+  
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+
+
+logging:
+  level:
+    org:
+      hibernate:
+         SQL : DEBUG
+         type:
+           descriptor:
+              sql:
+                BasicBinder: TRACE
+    org.springframework.web: ERROR
+    com.mkyong: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file: /var/www/log/media.log
+  feign:
+    client:
+      config:
+        default:
+          connectTimeout: 160000000
+          readTimeout: 160000000
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: true
+
+  
+  
